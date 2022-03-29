@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block register %}
+<main class="main login-form-container section">
+    <form action="" class="form-add-task login-form flex">
+        <div class="field">
+            <label for="user-name">Nombre<span>*</span></label>
+            <input type="text" name="user-name" placeholder="Pepito Peréz" class="input-todo" required>
+        </div>
+        <div class="field">
+            <label for="user-name">Genero <span>*</span></label>
+            <select class="gender-options" name="" id="">
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="password">Email<span>*</span></label>
+            <input type="email" name="password" placeholder="email@ejemplo.com" class="input-todo" required>
+        </div>
+        <div class="field">
+            <label for="password">Contraseña <span>*</span></label>
+            <input type="password" name="password" placeholder="Secure password" class="input-todo" required>
+        </div>
+        <div class="field">
+            <button type="submit" class="btn__login"><div class="uil uil-message add-todo-icon"></div></button>
+        </div>
+        <span>
+            Ya tiene una cuenta ??
+            <a href="{% url 'login' %}">iniciar Sesión</a>
+        </span>
+    </form>
+</main>
+{% endblock %}
