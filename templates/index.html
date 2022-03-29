@@ -1,94 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>Todo List </title>
-</head>
-<body>
-    <header class="header section flex">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Filtrar</a></li>
-                <li><a href="#">More</a></li>
-            </ul>
-        </nav>
-        <div class="toggle-theme">
-            <span><i class="uil uil-moon toggle-icon"></i></span>
-        </div>
-        <div class="user-image">
-            <img src="./img/user.jpg" alt="">
-        </div>
-        <span class="logout-btn">
-            <span class="tooltip">Cerrar Cesiòn</span>
-            <a href="index.html"><i class="uil uil-signin logout-icon"></i></a>
-        </span>
-    </header>
-    <main class="main">
-        <section class="section main-container flex">
-            <form action="" class="form-add-task flex">
-                <div class="field">
-                    <input type="text" name="task" class="input-todo" placeholder="Almorzar con proveedores" required>
-                </div>
-                <div class="field">
-                    <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
-                </div>
-            </form>
-            <div class="todos-container">
-                <div class="todos flex">
-                    <div class="todo grid">
-                        <span class="level-indicator urgente"></span>
-                        <div>
-                            <h3 class="todo-title">Web Scrapper</h3>
-                            <span class="todo-sub-title">Lorem ipsum dolor sit ammet</span>
-                        </div>
-                        <div class="todo-options flex">
-                            <div class="current_state">
-                            	<span>Terminado</span>
-                                <input type="checkbox" name="status" id="status">
-                            </div>
-                            <div class="btn btn-edit"><i class="uil uil-pen"></i></div>
-                            <div class="btn btn-delete"><i class="uil uil-trash"></i></div>
-                        </div>
-                    </div>
-                    <div class="todo grid">
-                        <span class="level-indicator normal"></span>
-                        <div>
-                            <h3 class="todo-title">Web Scrapper</h3>
-                            <span class="todo-sub-title">Lorem ipsum dolor sit ammet</span>
-                        </div>
-                        <div class="todo-options flex">
-                            <div class="current_state">
-                            	<span>Terminado</span>
-                                <input type="checkbox" name="status" id="status">
-                            </div>
-                            <div class="btn btn-edit"><i class="uil uil-pen"></i></div>
-                            <div class="btn btn-delete"><i class="uil uil-trash"></i></div>
-                        </div>
-                    </div>
-                    <div class="todo grid">
-                        <span class="level-indicator prioritario"></span>
-                        <div>
-                            <h3 class="todo-title">Web Scrapper</h3>
-                            <span class="todo-sub-title">Lorem ipsum dolor sit ammet</span>
-                        </div>
-                        <div class="todo-options flex">
-                            <div>
-                            	<span>Terminado</span>
-                                <input type="checkbox" name="status" id="status">
-                            </div>
-                            <div class="btn btn-edit"><i class="uil uil-pen"></i></div>
-                            <div class="btn btn-delete"><i class="uil uil-trash"></i></div>
-                        </div>
-                    </div>
-                </div>
+{% extends "base.html" %}
+{% load static %}
+{% block header %} 
+<header class="header section flex">
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Filtrar</a></li>
+            <li><a href="#">More</a></li>
+        </ul>
+    </nav>
+    <div class="toggle-theme">
+        <span><i class="uil uil-moon toggle-icon"></i></span>
+    </div>
+    <div class="user-image">
+        <img src="{% static './img/user.jpg' %}" alt="">
+    </div>
+    <span class="logout-btn">
+        <span class="tooltip">Cerrar Cesiòn</span>
+        <a href="index.html"><i class="uil uil-signin logout-icon"></i></a>
+    </span>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<main class="main">
+    <section class="section main-container flex">
+        <form action="add-todo/" class="form-add-task flex" method="post">
+            {% csrf_token %}
+            <div class="field">
+                <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>
             </div>
-        </section>
-    </main>
-    <script src="./js/app.js"></script>
-</body>
-</html>
+            <div class="field">
+                <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
+            </div>
+        </form>
+        <div class="todos-container">
+            <div class="todos flex">
+                {% for todo in todos %}
+                <div class="todo grid">
+                    <span class="level-indicator urgente"></span>
+                    <div>
+                        
+                        <h3 class="todo-title">{{ todo.name }}</h3>
+                        <span class="todo-sub-title">Lorem ipsum dolor sit ammet</span>
+                    </div>
+                    <div class="todo-options flex">
+                        <div class="current_state">
+                            <span>Terminado</span>
+                            <input type="checkbox" name="status" id="status">
+                        </div>
+                        <a  href="" class="btn btn-edit"><i class="uil uil-pen"></i></a >
+                        <a  href="{% url 'remove' todo.id %}" class="btn btn-delete"><i class="uil uil-trash"></i></a >
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+{% block header %} 
+    <header class="header section flex">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Filtrar</a></li>
+                <li><a href="#">More</a></li>
+            </ul>
+        </nav>
+        <div class="toggle-theme">
+            <span><i class="uil uil-moon toggle-icon"></i></span>
+        </div>
+        <div class="user-image">
+            <img src="{% static './img/user.jpg' %}" alt="">
+        </div>
+        <span class="logout-btn">
+            <span class="tooltip">Cerrar Cesiòn</span>
+            <a href="index.html"><i class="uil uil-signin logout-icon"></i></a>
+        </span>
+    </header>
+{% endblock %}
