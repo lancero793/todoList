@@ -157,16 +157,17 @@ nav ul li a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100%;
 }
 .main-container{
     width: 100%;
     background-color: rgb(19 23 24 / 88%);
     border-radius: 10px;
-    min-height: 100vh;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
     align-items: center;
+    min-height: 100vh;
     box-shadow: 2px 3px 4px rgba(0,0,0,0.18),
     -2px -2px 4px 0 rgba(0,0,0,0.18);
 }
@@ -175,7 +176,8 @@ body.active .main-container{
 
 }
 .btn__add-todo,
-.input-todo{
+.input-todo,
+.level-options{
     border: none;
     outline: none;
     padding: .75rem .5rem;
@@ -186,12 +188,25 @@ body.active .main-container{
     box-shadow: 0 0 2px 0 rgb(0,0,0.18);
     background-color: #fff;
 }
+.level-options{
+    height: 39px;
+    background-color: #fff; 
+}
+.field-border{
+    position: relative;
+}
+.field-border::before{
+    content: "";
+    position: absolute;
+    width: 1.3px;
+    height: 100%;
+    background-color: rgb(97, 90, 90);
+}
 .input-todo::placeholder{
     color: rgb(97, 90, 90);
 }
 .btn__add-todo{
     border-radius: 0 8px 8px 0;
-    margin-left: 5px;
     width: 60px;
     height: 39px;
     background-color: rgb(44, 236, 131);
@@ -206,6 +221,8 @@ body.active .main-container{
     display: flex;
     flex-direction: column;
     row-gap: .75rem;
+    justify-content: center;
+    align-items: center;
 }
 .todo{
     background-color: #1b1b1b;
@@ -223,22 +240,17 @@ body.active .main-container{
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: rgb(9, 7, 121);
+    background-color: rgb(19, 204, 19);
     top: 20px;
 }
-/* .todo .level-indicator::before{
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+.todo .level-indicator.prioritario{
     background-color: rgb(9, 7, 121);
-} */
-.todo .level-indicator.normal{
-    background-color: rgb(72, 173, 72);
 }
 .todo .level-indicator.urgente{
-    background-color: rgb(180, 36, 17);
+    background-color: rgb(240, 31, 3);
+}
+.todo .level-indicator.importante{
+    background-color: rgb(255, 196, 0);
 }
 .todo-title{
     color: #eeeeee;

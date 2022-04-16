@@ -12,13 +12,10 @@ function toggleTheme(){
     body.classList.toggle("active");
     toggleIcon.classList.toggle("uil-moon");
     toggleIcon.classList.toggle("uil-sun");
-    body.classList.toggle("active")
     if(body.classList.contains("active")){
         localStorage.setItem("dark", "false")
-        console.log(localStorage.getItem("dark"))
     }else{
         localStorage.setItem("dark", "true")
-        console.log(localStorage.getItem("dark"))
     }
 }
 

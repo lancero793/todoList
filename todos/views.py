@@ -7,7 +7,7 @@ def add_todo(request):
     if request.method == "POST":
         todo = Todo()
         todo.name = request.POST["todo"]
-        todo.level = "normal"
+        todo.level = request.POST["level"]
         todo.save()
         return redirect("home")
 

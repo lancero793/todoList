@@ -31,6 +31,14 @@
             <div class="field">
                 <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>
             </div>
+            <div class="field field-border">
+                <select class="level-options" name="level" id="">
+                    <option default value="normal">Normal</option>
+                    <option value="prioritario">Prioriatrio</option>
+                    <option value="importante">Importante</option>
+                    <option value="urgente">Urgente</option>
+                </select>
+            </div>
             <div class="field">
                 <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
             </div>
@@ -39,11 +47,11 @@
             <div class="todos flex">
                 {% for todo in todos %}
                 <div class="todo grid">
-                    <span class="level-indicator urgente"></span>
+                    <span class="level-indicator {{ todo.level }}"></span>
                     <div>
                         
                         <h3 class="todo-title">{{ todo.name }}</h3>
-                        <span class="todo-sub-title">Lorem ipsum dolor sit ammet</span>
+                        <span class="todo-sub-title">{{ todo.level }}</span>
                     </div>
                     <div class="todo-options flex">
                         <div class="current_state">
