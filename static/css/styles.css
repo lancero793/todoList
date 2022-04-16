@@ -23,6 +23,9 @@ html{
 .container{
     padding: 2rem .75rem;
 }
+body{
+    transition: .3s;
+}
 /* --------------------------- Header -------------------------- */
 .header{
     width: 100%;
@@ -30,7 +33,11 @@ html{
     align-items: center;
     background-image: linear-gradient(95deg, var(--primary-bg), #2C2F40);
     position: fixed;
+    transition: .3s all;
 
+}
+body.active .header{
+    background-color: rgb(19 23 24 / 88%);
 }
 nav ul{
     display: block;
@@ -154,14 +161,18 @@ nav ul li a:hover{
 }
 .main-container{
     width: 100%;
-    background-color: rgba(236, 246, 248, 0.884);
+    background-color: rgb(19 23 24 / 88%);
     border-radius: 10px;
     min-height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: 2px 3px 4px rgba(0,0,0,0.18),
-                -2px -2px 4px 0 rgba(0,0,0,0.18);
+    -2px -2px 4px 0 rgba(0,0,0,0.18);
+}
+body.active .main-container{
+    background-color: rgba(255, 255, 255, 0.884);
+
 }
 .btn__add-todo,
 .input-todo{
@@ -182,6 +193,7 @@ nav ul li a:hover{
     border-radius: 0 8px 8px 0;
     margin-left: 5px;
     width: 60px;
+    height: 39px;
     background-color: rgb(44, 236, 131);
     cursor: pointer;
 }

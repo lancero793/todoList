@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Todo
+import json
 
 def add_todo(request):
     if request.method == "POST":
@@ -25,7 +27,6 @@ def edit_todo(request, id):
     if not todo == None:
         todo.delete()
         return redirect("home")
-
 
 def login(request):
     return render(request, "login.html")
