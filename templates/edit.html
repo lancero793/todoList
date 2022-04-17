@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock header %}
+
+{% block content %}
+<section class="section main-container flex">
+    <form action="" class="form-add-task flex" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <input type="text" name="name-todo" class="input-todo" value="{{ todo.name }}">
+        </div>
+        <div class="field field-border">
+            <select class="level-options" name="level-todo" id="">
+                <option default value="normal">Normal</option>
+                <option value="prioritario">Prioriatrio</option>
+                <option value="importante">Importante</option>
+                <option value="urgente">Urgente</option>
+            </select>
+        </div>
+        <div class="field">
+            <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
+        </div>
+    </form>
+</section>
+{% endblock content %}

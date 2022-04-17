@@ -1,48 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block header %} 
-<header class="header section flex">
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Filtrar</a></li>
-            <li><a href="#">More</a></li>
-        </ul>
-    </nav>
-    <div class="toggle-theme">
-        <span><i class="uil uil-moon toggle-icon"></i></span>
-    </div>
-    <div class="user-image">
-        <img src="{% static './img/user.jpg' %}" alt="">
-    </div>
-    <span class="logout-btn">
-        <span class="tooltip">Cerrar Cesiòn</span>
-        <a href="index.html"><i class="uil uil-signin logout-icon"></i></a>
-    </span>
-</header>
+    {% include 'header.html' %}
 {% endblock %}
 
 
 {% block content %}
+<section class="section main-container flex">
+    <form action="add-todo/" class="form-add-task flex" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>
+        </div>
+        <div class="field field-border">
+            <select class="level-options" name="level" id="">
+                <option default value="normal">Normal</option>
+                <option value="prioritario">Prioriatrio</option>
+                <option value="importante">Importante</option>
+                <option value="urgente">Urgente</option>
+            </select>
+        </div>
+        <div class="field">
+            <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
+        </div>
+    </form>
+</section>
 <main class="main">
-    <section class="section main-container flex">
-        <form action="add-todo/" class="form-add-task flex" method="post">
-            {% csrf_token %}
-            <div class="field">
-                <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>
-            </div>
-            <div class="field field-border">
-                <select class="level-options" name="level" id="">
-                    <option default value="normal">Normal</option>
-                    <option value="prioritario">Prioriatrio</option>
-                    <option value="importante">Importante</option>
-                    <option value="urgente">Urgente</option>
-                </select>
-            </div>
-            <div class="field">
-                <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
-            </div>
-        </form>
         <div class="todos-container">
             <div class="todos flex">
                 {% for todo in todos %}
@@ -58,13 +42,12 @@
                             <span>Terminado</span>
                             <input type="checkbox" name="status" id="status">
                         </div>
-                        <a  href="" class="btn btn-edit"><i class="uil uil-pen"></i></a >
-                        <a  href="{% url 'remove' todo.id %}" class="btn btn-delete"><i class="uil uil-trash"></i></a >
+                        <a  href="{% url 'edit' todo.id %}" class="btn-edit"><i class="uil uil-pen"></i></a >
+                        <a  href="{% url 'remove' todo.id %}" class="btn-delete"><i class="uil uil-trash"></i></a >
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
-    </section>
 </main>
 {% endblock %}
