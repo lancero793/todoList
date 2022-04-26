@@ -1,9 +1,4 @@
-from operator import attrgetter
-from tkinter.tix import Form
-from xml.dom.minidom import Attr
 from django import forms
-
-
 
 class EditForm(forms.Form):
     name = forms.CharField(label="Nombre", required=True)

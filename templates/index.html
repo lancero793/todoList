@@ -7,46 +7,59 @@
 
 
 {% block content %}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
 <section class="section main-container flex">
-    <form action="add-todo/" class="form-add-task flex" method="post">
+    <form action="" class="form-add-task flex" method="POST">
         {% csrf_token %}
         <div class="field">
-            <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>
+            <div class="input-group"> 
+              <input type="text" class="form-control" name="todo" placeholder="Reunión con proveedores" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+           <!--- <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>-->
         </div>
         <div class="field field-border">
-            <select class="level-options" name="level" id="">
-                <option default value="normal">Normal</option>
-                <option value="prioritario">Prioriatrio</option>
-                <option value="importante">Importante</option>
-                <option value="urgente">Urgente</option>
-            </select>
+        
+            
+        <select class="form-select level-options" name="level" aria-label="Default select example">
+          <option value="normal" selected>Normal</option>
+          <option value="1">Prioriatrio</option>
+          <option value="2">Importante</option>
+          <option value="3">Urgente</option>
+        </select>
         </div>
         <div class="field">
-            <button type="submit" class="btn__add-todo"><div class="uil uil-message add-todo-icon"></div></button>
+            <button type="submit" class="btn__add-todo "><i class="uil uil-message add-todo-icon"></i></button>
         </div>
     </form>
 </section>
 <main class="main">
-        <div class="todos-container">
-            <div class="todos flex">
-                {% for todo in todos %}
-                <div class="todo grid">
-                    <span class="level-indicator {{ todo.level }}"></span>
-                    <div>
-                        
-                        <h3 class="todo-title">{{ todo.name }}</h3>
-                        <span class="todo-sub-title">{{ todo.level }}</span>
-                    </div>
-                    <div class="todo-options flex">
-                        <div class="current_state">
-                            <span>Terminado</span>
-                            <input type="checkbox" name="status" id="status">
-                        </div>
-                        <a  href="{% url 'edit' todo.id %}" class="btn-edit"><i class="uil uil-pen"></i></a >
-                        <a  href="{% url 'remove' todo.id %}" class="btn-delete"><i class="uil uil-trash"></i></a >
-                    </div>
-                </div>
-                {% endfor %}
+        <div class="todos-container" id="box-todos">
+            <div class="container">
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+</div>
             </div>
         </div>
 </main>
