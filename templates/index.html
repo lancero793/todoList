@@ -19,7 +19,39 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+           <div class="card">
+               <div class="card-body">
+                   <form class="" action="/edit-todo/q=?" method="POST">
+                       {% csrf_token %}
+                       <div class="field mb-2 ">
+                           <label for="name-todo">Nombre del todo</label>
+                           <input type="text" name="" class="form-control" id="" value="" />
+                       </div>
+                       <div class="field mt-2">
+                           <label for="level">Nivel de importancia</label>
+                            <select class="form-select level-options" name="level" aria-label="Default select example">
+                                <option value="normal" selected>Normal</option>
+                                <option value="1">Prioriatrio</option>
+                                <option value="2">Importante</option>
+                                <option value="3">Urgente</option>
+                            </select>
+                       </div>
+                       <div class="field">
+                           <button type="submit">Guardar</button>
+                       </div>
+                   </form>
+               </div>
+               <div class="card-footer">
+                   <div class="row">
+                       <div class="col-sm-2">
+                           <button class="btn btn-warning" type="button"><i class="uil uil-message"></i></button>
+                       </div>
+                       <div class="col-sm-2">
+                           <button class="btn btn-success" type="button"><i class="uil uil-check"></i></button>
+                       </div>
+                   </div>
+               </div>
+           </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -30,19 +62,18 @@
 </div> 
 
 <section class="section main-container flex">
-    <form action="" class="form-add-task flex" method="POST">
-        {% csrf_token %}
+    <div class="alert alert-danger d-none alert-box" role="alert">
+        El campo debe contener una tarea.
+    </div>
+    <form action="/add-todo/" class="form-add-task flex" method="POST">
+        {% csrf_token %} 
         <div class="field">
             <div class="input-group"> 
-              <input type="text" class="form-control" name="todo" placeholder="Reunión con proveedores" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="text" class="form-control"  id="name-todo" placeholder="Reunión con proveedores" >
             </div>
-
-           <!--- <input type="text" name="todo" class="input-todo" placeholder="Almorzar con proveedores" required>-->
         </div>
         <div class="field field-border">
-        
-            
-        <select class="form-select level-options" name="level" aria-label="Default select example">
+        <select class="form-select level-options" id="level-todo-id">
           <option value="normal" selected>Normal</option>
           <option value="1">Prioriatrio</option>
           <option value="2">Importante</option>
@@ -56,10 +87,10 @@
 </section>
 <main class="main">
         <div class="todos-container" id="box-todos">
-            <div class="container">
-                <div class="spinner-grow" role="status">
+            <div class="container container-xer text-center">
+                <div class="spinner-grow text-info" role="status">
                     <span class="visually-hidden">Loading...</span>
-</div>
+                </div>
             </div>
         </div>
 </main>

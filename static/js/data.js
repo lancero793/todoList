@@ -1,33 +1,44 @@
 const todosBoxElement = document.getElementById("box-todos");
 const formCreateTodos = document.querySelector(".form-add-task");
-const title = document.getElementById("id_todo");
+const alertBox = document.querySelector(".alert");
+const title = document.getElementById("name-todo");
+const level = document.getElementById("level-todo-id");
 const addBtn = document.querySelector(".btn__add-todo");
 const csrf = document.getElementsByName("csrfmiddlewaretoken");
 const spinner = document.querySelector(".spinner-grow");
 function createTodo() {
-   // alert(title)
+    let data = null;
+    if (title.value != ""){
+        alertBox.classList.add("d-none");
+    } else {
+        alertBox.classList.remove("d-none")
+    }
    formCreateTodos.addEventListener("submit", (e) => {
-       e.preventDefault(); 
- 
-    $.ajax({
-        type: "POST",
-        url: "/add-todo/",
-        data: {
-            "CsrfMiddlewareToken": csrf,
-            "title": title
-        },
-        success: function (response) {
-            const data = response.data;
-        },
-        error: function (response) {
-            alert(response);
-        }
-    })
-   })
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/add-todo/",
+            data: {
+                "csrfmiddlewaretoken": csrf[0].value,
+                "todo": title.value,
+                "level": level.value,
+            },
+            success: (response) => {
+                const data = response.test;
+                data.forEach(todo => {
+                    alert(todo)
+                })
+            },
+            error: (error) => {
+                alert("Error", error);
+            }
+        });
+    }); 
 }
 
-$(".btn__add-todo").click(() => {
-    createTodo()
+addBtn.addEventListener("click", () =>{
+   createTodo();
+  // alert()
 })
 
 
@@ -70,7 +81,7 @@ function loadData() {
                 `;
                 
             })
-      }, 2000); 
+      }, 1000); 
     },
         error: (response) => {
             alert(response.status);

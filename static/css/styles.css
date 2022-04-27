@@ -27,6 +27,11 @@ body{
     transition: .3s;
     background-color: var(--primary-bg);
 }
+.container-xer{
+    min-height: 100vh;
+    background: red !important;
+    display: none;
+}
 body.active{
     background-color: #fff;
 }
@@ -236,9 +241,9 @@ nav ul li a:hover{
     flex-direction: row;
     flex-wrap: wrap;
     gap: .75rem;
-
     justify-content: center;
     align-items: center;
+    transition: .3s all ease-in-out;
 }
 .todo{
     background-color: #1b1b1b;
